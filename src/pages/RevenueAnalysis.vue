@@ -112,7 +112,6 @@
 <script>
 import Chart from "chart.js";
 import ChartComponent from "../components/Chart.vue";
-import products from "../dummy-data/products.json";
 import RevenueService from "../services/RevenueService.js";
 
 export default {
