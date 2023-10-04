@@ -1,31 +1,46 @@
 <template>
     <div>
-        <canvas ref="chart" :width="width" :height="height"></canvas>
+      <canvas ref="myChart"></canvas>
     </div>
-</template>
+  </template>
   
-<script>
-import Chart from 'chart.js';
-
-export default {
+  <script>
+  import { Chart } from "chart.js";
+  
+  export default {
     props: {
-        chartData: {
-            type: Object,
-            required: true,
-        },
-        width: {
-            type: Number,
-            default: 600,
-        },
-        height: {
-            type: Number,
-            default: 400,
-        },
+      chartData: {
+        type: Object,
+        required: true,
+      },
+    },
+    data() {
+      return {
+        chartInstance: null,  // Instance to store the Chart.js object
+      };
     },
     mounted() {
-        const ctx = this.$refs.chart.getContext('2d');
-        new Chart(ctx, this.chartData);
+      this.renderChart();
     },
-};
-</script>
+    methods: {
+      renderChart() {
+        // Destroy the previous instance if it exists
+        if (this.chartInstance) {
+          this.chartInstance.destroy();
+        }
+  
+        // Create a new instance
+        this.chartInstance = new Chart(this.$refs.myChart, this.chartData);
+      },
+    },
+    watch: {
+      chartData: {
+        handler() {
+          this.renderChart();
+        },
+        deep: true,
+      },
+    },
+  };
+  </script>
   
