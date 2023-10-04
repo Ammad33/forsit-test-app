@@ -48,18 +48,7 @@ For this project, we use JSON Server to simulate a REST API for development purp
    npm install -g json-server
    ```
 
-2. Create a `db.json` file in the project directory. This file will serve as your JSON database. You can customize it to define your API endpoints and data. Here's a simple example:
-
-   ```json
-   {
-     "posts": [
-       { "id": 1, "title": "First Post" },
-       { "id": 2, "title": "Second Post" }
-     ]
-   }
-   ```
-
-3. Start JSON Server by running the following command:
+2. Start JSON Server by running the following command:
 
    ```bash
    json-server --watch db.json
@@ -73,12 +62,6 @@ You can access the JSON Server API using the following base URL:
 
 ```
 http://localhost:3000
-```
-
-For example, if you have defined a "posts" endpoint in your `db.json`, you can access it at:
-
-```
-http://localhost:3000/posts
 ```
 
 ## Additional Information
