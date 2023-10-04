@@ -4,6 +4,10 @@ export default {
     getProducts() {
         return axios.get("http://localhost:3000/products").then(response => response.data);
     },
+     async getProductsCount() {
+        const response = await axios.get("http://localhost:3000/products");
+        return response.data.length;
+    },
     addProduct(product) {
         return axios.post("http://localhost:3000/products", product).then(response => response.data);
     },

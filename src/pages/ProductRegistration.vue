@@ -29,7 +29,7 @@
           class="mb-6 p-4 border rounded-lg shadow-md relative"
         >
           <div class="justify-between flex items-center mb-2">
-            <h3 class="text-lg font-semibold ml-2">{{ product.name }}</h3>
+            <h3 class="text-lg font-semibold">{{ product.name }}</h3>
             <div>
               <span
                 @click="openEditModal(product)"
@@ -74,7 +74,7 @@
 <script>
 import AddProductModal from "../components/AddProductModal.vue";
 import EditProductModel from "../components/EditProductModal.vue";
-import productService from "@/services/productService"; // Import the service
+import productService from "@/services/productService";
 
 export default {
   components: {
@@ -91,7 +91,6 @@ export default {
       initialStockLevel: "",
       products: [],
       selectedProduct: null,
-      // Add more data properties as needed for image upload
     };
   },
   async created() {
@@ -107,16 +106,13 @@ export default {
   },
   methods: {
     openEditModal(product) {
-      // Set the selected product and open the edit modal
       this.selectedProduct = product;
       this.isEditModalOpen = true;
     },
     openModal() {
       this.isModalOpen = true;
     },
-    // openEditModal(){
-    //     this.isEditModalOpen = true;
-    // },
+
     closeEditModal() {
       this.isEditModalOpen = false;
     },
@@ -160,6 +156,25 @@ export default {
       } catch (error) {
         console.error("An error occurred while updating the product:", error);
         this.$toasted.error("Failed to update product", {
+          duration: 2000,
+          position: "top-right",
+        });
+      }
+    },
+    async deleteProduct(product) {
+      try {
+        await productService.deleteProduct(product.id);
+        this.products = this.products.filter((p) => p.id !== product.id);
+
+        // Notify user of success
+        this.$toasted.success("Product deleted successfully", {
+          duration: 2000,
+          position: "top-right",
+        });
+      } catch (error) {
+        console.error("An error occurred while deleting the product:", error);
+        // Notify user of failure
+        this.$toasted.error("Failed to delete product", {
           duration: 2000,
           position: "top-right",
         });
