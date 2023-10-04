@@ -13,7 +13,6 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import { AgGridVue } from "ag-grid-vue";
 import "ag-grid-enterprise";
-// import data from '../dummy-data/products.vue'
 
 export default {
   name: "App",
@@ -49,8 +48,6 @@ export default {
         },
       },
     ];
-    console.log(items.ItemResponse);
-    this.rowData = items.ItemResponse;
 
     this.gridOptions = {
       domLayout: "autoWidth", // Automatically adjust the grid height
@@ -59,10 +56,6 @@ export default {
     fetch("https://fakestoreapi.com/products")
       .then((result) => result.json())
       .then((rowData) => (this.rowData = rowData));
-
-    //  fetch('https://www.ag-grid.com/example-assets/row-data.json')
-    //          .then(result => result.json())
-    //          .then(rowData => this.rowData = rowData);
   },
 };
 </script>

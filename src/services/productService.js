@@ -12,7 +12,6 @@ export default {
         return axios.post("http://localhost:3000/products", product).then(response => response.data);
     },
     updateProduct(product) {
-        console.log(product)
         // Assuming the product object has an `id` property
         return axios.put(`http://localhost:3000/products/${product.id}`, product).then(response => response.data);
     },
