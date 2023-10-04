@@ -4,7 +4,6 @@ import Router from 'vue-router'
 import Toasted from 'vue-toasted';
 
 import Dashboard from '@/components/Dashboard'
-import DashboardHome from '@/pages/Home'
 import InventoryManagement from '../src/pages/InventoryManagement'
 import Revenue from '../src/pages/RevenueAnalysis'
 import ProductRegistration from '../src/pages/ProductRegistration'
@@ -19,8 +18,7 @@ Vue.use(Toasted);
 const routes = [
   { path: '/', redirect: { name: 'DashboardHome' } },
   { path: '/dashboard', component: Dashboard, children: [
-      { path: '/', redirect: { name: 'DashboardHome' } },
-      { path: 'home', name: 'DashboardHome', component: DashboardHome },
+      { path: '/', redirect: { name: 'Revenue' } },
       { path: 'inventory-management', name: 'InventoryManagement', component: InventoryManagement },
       { path: 'revenue-analysis', name: 'Revenue', component: Revenue },
       { path: 'product-registration', name: 'ProductRegistration', component: ProductRegistration }
